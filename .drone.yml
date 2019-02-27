@@ -1,0 +1,32 @@
+workspace:
+  base: /go
+  path: src
+
+clone:
+  git:
+    image: plugins/git:next
+    depth: 50
+    tags: true
+
+pipeline:
+  docker-latest:
+    image: plugins/docker:17.12
+    secrets: [ docker_username, docker_password ]
+    pull: true
+    repo: zzdats/sonnar-scanner-cli
+    cache_from: zzdats/sonnar-scanner-cli
+    tag:
+      - latest
+    when:
+      event: [ push ]
+      branch: [ master ]
+
+  docker-version:
+    image: plugins/docker:17.12
+    secrets: [ docker_username, docker_password ]
+    pull: true
+    repo: zzdats/sonnar-scanner-cli
+    cache_from: zzdats/sonnar-scanner-cli
+    auto_tag: true
+    when:
+      event: [ tag ]
