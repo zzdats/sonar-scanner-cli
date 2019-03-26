@@ -9,6 +9,18 @@ clone:
     tags: true
 
 pipeline:
+  lint:
+    image: hadolint/hadolint:latest-debian
+    pull: true
+    commands:
+      - hadolint Dockerfile
+    when:
+      event:
+        - push
+        - pull_request
+      branch:
+        - master
+  
   docker-latest:
     image: plugins/docker:17.12
     secrets: [ docker_username, docker_password ]
@@ -18,8 +30,10 @@ pipeline:
     tag:
       - latest
     when:
-      event: [ push ]
-      branch: [ master ]
+      event:
+        - push
+      branch:
+        - master
 
   docker-version:
     image: plugins/docker:17.12
@@ -29,4 +43,5 @@ pipeline:
     cache_from: zzdats/sonnar-scanner-cli
     auto_tag: true
     when:
-      event: [ tag ]
+      event:
+        - tag
