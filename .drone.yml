@@ -25,8 +25,8 @@ pipeline:
     image: plugins/docker:17.12
     secrets: [ docker_username, docker_password ]
     pull: true
-    repo: zzdats/sonnar-scanner-cli
-    cache_from: zzdats/sonnar-scanner-cli
+    repo: zzdats/sonar-scanner-cli
+    cache_from: zzdats/sonar-scanner-cli
     tag:
       - latest
     when:
@@ -39,8 +39,8 @@ pipeline:
     image: plugins/docker:17.12
     secrets: [ docker_username, docker_password ]
     pull: true
-    repo: zzdats/sonnar-scanner-cli
-    cache_from: zzdats/sonnar-scanner-cli
+    repo: zzdats/sonar-scanner-cli
+    cache_from: zzdats/sonar-scanner-cli
     auto_tag: true
     when:
       event:
