@@ -2,7 +2,7 @@ FROM openjdk:8-alpine
 
 LABEL maintainer="SIA ZZ Dats <opensource@zzdats.lv>"
 
-ARG SONAR_SCANNER_VERSION="3.3.0.1492"
+ARG SONAR_SCANNER_VERSION="4.1.0.1829"
 
 # Settings
 ENV TZ=Europe/Riga \
@@ -13,7 +13,7 @@ ENV PATH $PATH:$SONAR_RUNNER_HOME/bin
 # Set timezone to CST
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone && \
     apk add --no-cache --virtual=.run-deps bash=4.4.19-r1 && \
-    apk add --no-cache --virtual=.build-deps curl=7.64.0-r1 grep=3.1-r2 sed=4.5-r0 unzip=6.0-r4 && \
+    apk add --no-cache --virtual=.build-deps curl=7.64.0-r3 grep=3.1-r2 sed=4.5-r0 unzip=6.0-r4 && \
     mkdir -p /opt && \
     curl --insecure -o /opt/sonarscanner.zip -L $SONAR_URL && \
 	unzip /opt/sonarscanner.zip -d /opt && \
