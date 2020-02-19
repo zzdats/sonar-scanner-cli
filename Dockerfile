@@ -2,7 +2,7 @@ FROM openjdk:8-alpine
 
 LABEL maintainer="SIA ZZ Dats <opensource@zzdats.lv>"
 
-ARG SONAR_SCANNER_VERSION="4.1.0.1829"
+ARG SONAR_SCANNER_VERSION="4.2.0.1873"
 
 # Settings
 ENV TZ=Europe/Riga \
